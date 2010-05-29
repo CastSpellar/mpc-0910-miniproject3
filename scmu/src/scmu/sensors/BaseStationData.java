@@ -21,7 +21,10 @@ public class BaseStationData extends TemperatureBaseStation implements SensorMes
 	}
 	
 	public void onReceive(EndPoint src, PingMessage m) {
-
+		System.out.println("Pos: " + src.address.pos.getX() + " "+ src.address.pos.getY() );
+		System.out.println("Temperature: " + m.temperature);
+		setTemp(src.address.pos, m.temperature);
+		endpoint.broadcast(new ParentMessage(0));
 	}
 		
 	public void displayOn( Canvas canvas ) {
@@ -30,4 +33,19 @@ public class BaseStationData extends TemperatureBaseStation implements SensorMes
 		canvas.sFill( RGB.BLUE, new Rectangle( address.pos.x, address.pos.y, 13.0, 13.0 ) ) ;
 		canvas.sDraw( RGB.BLACK, String.format("BS"), address.pos.x - 10, address.pos.y - 10 ) ;
 	}
+
+	@Override
+	public void onReceive(EndPoint src, ParentMessage parentMessage) {
+		// Do nothing;
+		/*
+		if(parentMessage.level > 1)
+			endpoint.tcpSend(src, new ParentMessage(0));
+			*/
+	}
+
+	@Override
+	public void onReceive(EndPoint src, TemperatureMessage temperatureMessage) {
+		setTemp(temperatureMessage.pos, temperatureMessage.temperature);
+	}
 }
+

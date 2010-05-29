@@ -24,10 +24,24 @@ public class SensorMinMax extends TemperatureSensor implements SensorMessageHand
 	}
 	
 	public void onReceive(EndPoint src, PingMessage m) {
+		endpoint.latency(src);
+		//endpoint.address.pos.
 	}
 		
 	public void displayOn( Canvas canvas ) {
 		super.displayOn(canvas) ;
 		canvas.sDraw( RGB.BLACK, String.format("%.0fºC", temperature()), address.pos.x - 10, address.pos.y - 10 ) ;
+	}
+
+	@Override
+	public void onReceive(EndPoint src, ParentMessage forwardMessage) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onReceive(EndPoint src, TemperatureMessage temperatureMessage) {
+		// TODO Auto-generated method stub
+		
 	}
 }
