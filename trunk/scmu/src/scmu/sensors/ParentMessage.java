@@ -6,18 +6,15 @@ import simsim.core.Message;
 import simsim.core.MessageHandler;
 import simsim.gui.canvas.RGB;
 
-public class PingMessage extends Message {
+public class ParentMessage extends Message {
 
+	public int level;
 	public Double temperature;
-
-	public PingMessage() {
-		super(true, RGB.DARK_GRAY) ;
-	}
 	
-	public PingMessage(Double temperature) {
+	public ParentMessage(int level) {
 		super(true, RGB.DARK_GRAY) ;
-		this.temperature = temperature;
-		length = Double.SIZE;
+		this.level = level;
+		length = Integer.SIZE/8;
 	}
 
 	public int length() {

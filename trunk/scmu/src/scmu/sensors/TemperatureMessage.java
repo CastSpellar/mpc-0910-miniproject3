@@ -5,19 +5,20 @@ import simsim.core.EndPoint;
 import simsim.core.Message;
 import simsim.core.MessageHandler;
 import simsim.gui.canvas.RGB;
+import simsim.gui.geom.XY;
 
-public class PingMessage extends Message {
+public class TemperatureMessage extends Message {
 
-	public Double temperature;
-
-	public PingMessage() {
-		super(true, RGB.DARK_GRAY) ;
-	}
+	public double temperature;
+	public int level;
+	public XY pos;
 	
-	public PingMessage(Double temperature) {
+	public TemperatureMessage(XY pos,int level,double temperature) {
 		super(true, RGB.DARK_GRAY) ;
+		this.pos = pos;
+		this.level = level;
 		this.temperature = temperature;
-		length = Double.SIZE;
+		length = ((3*Double.SIZE)+Integer.SIZE)/8;
 	}
 
 	public int length() {

@@ -33,4 +33,16 @@ public class BaseStationMinMax extends TemperatureBaseStation implements SensorM
 		canvas.sFill( RGB.BLUE, new Rectangle( address.pos.x, address.pos.y, 13.0, 13.0 ) ) ;
 		canvas.sDraw( RGB.BLACK, String.format("BS"), address.pos.x - 10, address.pos.y - 10 ) ;
 	}
+
+	@Override
+	public void onReceive(EndPoint src, ParentMessage forwardMessage) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onReceive(EndPoint src, TemperatureMessage temperatureMessage) {
+		// TODO Auto-generated method stub
+		
+	}
 }
