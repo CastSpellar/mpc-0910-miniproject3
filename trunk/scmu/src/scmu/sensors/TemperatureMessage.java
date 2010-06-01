@@ -9,15 +9,17 @@ import simsim.gui.geom.XY;
 
 public class TemperatureMessage extends Message {
 
+	public XY router;
 	public double temperature;
 	public int level;
 	public XY pos;
 	
-	public TemperatureMessage(XY pos,int level,double temperature) {
+	public TemperatureMessage(XY router,XY pos,int level,double temperature) {
 		super(true, RGB.DARK_GRAY) ;
 		this.pos = pos;
 		this.level = level;
 		this.temperature = temperature;
+		this.router = router;
 		length = ((3*Double.SIZE)+Integer.SIZE)/8;
 	}
 

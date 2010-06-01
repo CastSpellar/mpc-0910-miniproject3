@@ -172,4 +172,8 @@ class RadioImpl implements Radio {
 	public double range() {
 		return Math.sqrt( MAX_RANGE_2 * power / 100.0 );
 	}
+	
+	public double powerFromDistance(double distance) {
+		return (100*distance*distance)/MAX_RANGE_2;
+	}
 }

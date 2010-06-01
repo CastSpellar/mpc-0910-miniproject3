@@ -1,5 +1,7 @@
 package scmu.sensors;
 
+import java.awt.Color;
+
 import scmu.sensors.sys.*;
 import scmu.sensors.temperature.*;
 import simsim.core.EndPoint;
@@ -17,14 +19,17 @@ public class BaseStationData extends TemperatureBaseStation implements SensorMes
 	}
 	
 	public void init() {
-	
+		new PeriodicTask(this, 1,1 + Simulation.rg.nextInt(20),RGB.BLUE) {
+			public void run() {
+				endpoint.broadcast(new ParentMessage(0));
+			}
+		};
 	}
 	
 	public void onReceive(EndPoint src, PingMessage m) {
-		System.out.println("Pos: " + src.address.pos.getX() + " "+ src.address.pos.getY() );
-		System.out.println("Temperature: " + m.temperature);
-		setTemp(src.address.pos, m.temperature);
-		endpoint.broadcast(new ParentMessage(0));
+		System.out.println("Pinged by Pos: " + src.address.pos.getX() + " "+ src.address.pos.getY() );
+		//setTemp(src.address.pos, m.temperature);
+
 	}
 		
 	public void displayOn( Canvas canvas ) {
@@ -45,7 +50,16 @@ public class BaseStationData extends TemperatureBaseStation implements SensorMes
 
 	@Override
 	public void onReceive(EndPoint src, TemperatureMessage temperatureMessage) {
+		System.out.println("Pos: " + temperatureMessage.pos.getX() + " "+ temperatureMessage.pos.getY() );
+		System.out.println("Temperature: " + temperatureMessage.temperature);
 		setTemp(temperatureMessage.pos, temperatureMessage.temperature);
+	}
+
+	@Override
+	public void onReceive(EndPoint src,
+			TemperatureMinMaxMessage temperatureMinMaxMessage) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

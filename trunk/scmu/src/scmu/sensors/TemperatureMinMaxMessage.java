@@ -5,16 +5,22 @@ import simsim.core.EndPoint;
 import simsim.core.Message;
 import simsim.core.MessageHandler;
 import simsim.gui.canvas.RGB;
+import simsim.gui.geom.XY;
 
-public class PingMessage extends Message {
+public class TemperatureMinMaxMessage extends Message {
 
-	public PingMessage() {
-		super(true, RGB.DARK_GRAY) ;
-	}
+	public XY router;
+	public double max,min,avg;
+	public int level;
 	
-	public PingMessage(Double temperature) {
+	public TemperatureMinMaxMessage(XY router,int level,double min,double max,double avg) {
 		super(true, RGB.DARK_GRAY) ;
-		length = 0;
+		this.router = router;
+		this.level = level;
+		this.min = min;
+		this.max = max;
+		this.avg = avg;
+		length = ((5*Double.SIZE)+Integer.SIZE)/8;
 	}
 
 	public int length() {

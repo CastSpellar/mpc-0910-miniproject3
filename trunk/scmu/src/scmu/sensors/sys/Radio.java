@@ -8,4 +8,6 @@ public interface Radio {
 	public double getPower() ;
 	
 	public double range();
+	
+	public double powerFromDistance(double distance);
 }

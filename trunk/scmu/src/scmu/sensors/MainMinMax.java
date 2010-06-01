@@ -6,8 +6,6 @@ import static simsim.core.Simulation.DisplayFlags.TRAFFIC;
 import static simsim.core.Simulation.DisplayFlags.NETWORK;
 
 import java.util.EnumSet;
-
-
 import scmu.sensors.sys.*;
 import scmu.sensors.temperature.*;
 import simsim.core.*;
@@ -73,6 +71,13 @@ public class MainMinMax extends Simulation  {
 						medTemp += temp;
 					}
 				}
+				System.out.println("***************************************************");
+				System.out.println("********************* Real ************************");
+				System.out.println("	Min: "+ minTemp+" 	Max: "+maxTemp+" 	Avg: "+medTemp / TOTAL_SENSORS);
+				System.out.println("****************** Base Station *******************");
+				System.out.println("	Min: "+ bs.getMinTemp()+" 	Max: "+bs.getMaxTemp()+" 	Avg: "+bs.getMidTemp());				
+				System.out.println("***************************************************");
+				
 				chart.getSeries("s0").add( currentTime(), 100 * n / TOTAL_SENSORS) ;
 
 				chart2.getSeries("Min").add( currentTime(), Math.abs( minTemp - bs.getMinTemp())) ;

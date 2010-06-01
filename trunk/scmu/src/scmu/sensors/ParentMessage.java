@@ -9,7 +9,6 @@ import simsim.gui.canvas.RGB;
 public class ParentMessage extends Message {
 
 	public int level;
-	public Double temperature;
 	
 	public ParentMessage(int level) {
 		super(true, RGB.DARK_GRAY) ;
