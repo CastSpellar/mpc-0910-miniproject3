@@ -80,4 +80,8 @@ class BSRadioImpl implements Radio {
 	public double range() {
 		return MAX_RANGE * power ;
 	}
+
+	public double powerFromDistance(double distance) {
+		return MAX_RANGE * distance;
+	}
 }

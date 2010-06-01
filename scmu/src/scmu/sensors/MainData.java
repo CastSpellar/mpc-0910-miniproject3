@@ -55,6 +55,7 @@ public class MainData extends Simulation  {
 				int n = -1 ;
 				double maxErr = Double.MIN_VALUE;
 				double medErr = 0;
+				int maxNodeLevel = 0;
 					
 				for( AbstractSensor i : SensorDB.sensors() ) {
 					if( i.isOnline() )
@@ -68,6 +69,11 @@ public class MainData extends Simulation  {
 							maxErr = diff;
 						medErr += diff;
 					}
+					if(i instanceof SensorData) {
+						if(((SensorData) i).mylevel > maxNodeLevel)
+							maxNodeLevel = ((SensorData) i).mylevel; 
+					}
+					//System.out.println(maxNodeLevel);
 				}
 				chart.getSeries("s0").add( currentTime(), 100 * n / TOTAL_SENSORS) ;
 
